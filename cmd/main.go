@@ -7,18 +7,20 @@ import (
 	"github.com/duramash/constanta-emulator-task/pkg/service"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"log"
 	"os"
 )
 
 func main() {
+	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
-		log.Fatalf("Error with config initialization: %s", err.Error())
+		logrus.Fatalf("Error with config initialization: %s", err.Error())
 	}
 
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("Error with loading env data: %s", err.Error())
+		logrus.Fatalf("Error with loading env data: %s", err.Error())
 	}
 
 	db, err := repository.NewPostgresDB(repository.Config{
@@ -31,7 +33,7 @@ func main() {
 	})
 
 	if err != nil {
-		log.Fatalf("Failed to initialize DB: %s", err.Error())
+		logrus.Fatalf("Failed to initialize DB: %s", err.Error())
 	}
 
 	repo := repository.NewRepository(db)

@@ -1,15 +1,17 @@
 package service
 
-import "github.com/duramash/constanta-emulator-task/pkg/repository"
-
-type Authorisation interface {
-}
+import (
+	emulator "github.com/duramash/constanta-emulator-task/pkg/models"
+	"github.com/duramash/constanta-emulator-task/pkg/repository"
+)
 
 type Transaction interface {
+	Create(transaction emulator.TransactionModel) (int, error) {
+
+	}
 }
 
 type Service struct {
-	Authorisation
 	Transaction
 }
 
