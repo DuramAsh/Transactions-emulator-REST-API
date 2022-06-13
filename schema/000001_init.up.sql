@@ -7,5 +7,5 @@ CREATE TABLE transactions
     currency            VARCHAR(40) NOT NULL,
     date_of_creation    TIMESTAMP,
     date_of_last_change TIMESTAMP,
-    status              VARCHAR(40) NOT NULL
+    status              VARCHAR(40)
 );

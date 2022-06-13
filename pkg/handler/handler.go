@@ -29,9 +29,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			transactions.POST("/", h.createTransaction)
 			transactions.PATCH("/:id", h.changeStatusOfTransactionById)
 			transactions.GET("/:id", h.getStatusOfTransactionById)
-			transactions.GET("/users/id/:user_id", h.getTransactionsByUserId)
-			transactions.GET("/users/email/:user_email", h.getTransactionsByUserEmail)
 			transactions.DELETE("/:id", h.cancelTransactionById)
+			users := transactions.Group("/users")
+			{
+				users.GET("/id/:user_id", h.getTransactionsByUserId)
+				users.GET("/email/:user_email", h.getTransactionsByUserEmail)
+			}
 		}
 	}
 

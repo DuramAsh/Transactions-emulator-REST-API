@@ -6,9 +6,12 @@ import (
 )
 
 type Transaction interface {
-	Create(transaction emulator.TransactionModel) (int, error) {
-
-	}
+	Create(transaction emulator.TransactionModel) error
+	ChangeStatus(transactionId int, transaction emulator.TransactionModel) error
+	GetStatus(transactionId int) (string, error)
+	Cancel(transactionId int) error
+	GetByUserId(userId int) ([]emulator.TransactionModel, error)
+	GetByUserEmail(userEmail string) ([]emulator.TransactionModel, error)
 }
 
 type Service struct {
@@ -16,5 +19,7 @@ type Service struct {
 }
 
 func NewService(repo *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Transaction: NewTransactionService(repo.Transaction),
+	}
 }
