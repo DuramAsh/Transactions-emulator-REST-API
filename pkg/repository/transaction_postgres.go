@@ -24,7 +24,7 @@ func (r *TransactionPostgres) Create(transaction emulator.TransactionModel) erro
 }
 
 func (r *TransactionPostgres) ChangeStatus(transactionId int, transaction emulator.TransactionModel) error {
-	query := "UPDATE transactions SET status = $1 WHERE user_id = $2"
+	query := "UPDATE transactions SET status = $1 WHERE id = $2"
 	_, err := r.db.Exec(query, transaction.Status, transactionId)
 	if err != nil {
 		return err
