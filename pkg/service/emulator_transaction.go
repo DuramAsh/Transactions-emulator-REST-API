@@ -13,12 +13,12 @@ func NewTransactionService(repo repository.Transaction) *TransactionService {
 	return &TransactionService{repo: repo}
 }
 
-func (s *TransactionService) Create(transaction emulator.TransactionModel) error {
-	return s.repo.Create(transaction)
+func (s *TransactionService) Create(body emulator.TransactionModel) error {
+	return s.repo.Create(body)
 }
 
-func (s *TransactionService) ChangeStatus(transactionId int, transaction emulator.TransactionModel) error {
-	return s.repo.ChangeStatus(transactionId, transaction)
+func (s *TransactionService) ChangeStatus(transactionId int, body emulator.TransactionModel) (string, error) {
+	return s.repo.ChangeStatus(transactionId, body)
 }
 
 func (s *TransactionService) GetStatus(transactionId int) (string, error) {

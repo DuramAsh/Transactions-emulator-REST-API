@@ -2,6 +2,7 @@ package handler
 
 import (
 	emulator "github.com/duramash/constanta-emulator-task/pkg/models"
+	"github.com/duramash/constanta-emulator-task/pkg/utility"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -11,13 +12,14 @@ func (h *Handler) createTransaction(c *gin.Context) {
 
 	var input emulator.TransactionModel
 	if err := c.BindJSON(&input); err != nil {
-		NewErrorResponse(c, http.StatusInternalServerError, err.Error())
+		utility.NewErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
 	err := h.services.Transaction.Create(input)
 	if err != nil {
-		NewErrorResponse(c, http.StatusInternalServerError, err.Error())
+		utility.NewErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
 	}
 
 	c.JSON(http.StatusOK, map[string]interface{}{
@@ -28,20 +30,24 @@ func (h *Handler) createTransaction(c *gin.Context) {
 func (h *Handler) changeStatusOfTransactionById(c *gin.Context) {
 	transactionId := c.Param("id")
 	transactionIdInt, err := strconv.Atoi(transactionId)
-
-	var input emulator.TransactionModel
-	if err := c.BindJSON(&input); err != nil {
-		NewErrorResponse(c, http.StatusBadRequest, err.Error())
+	if err != nil {
+		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	err = h.services.Transaction.ChangeStatus(transactionIdInt, input)
+	var body emulator.TransactionModel
+	if err := c.BindJSON(&body); err != nil {
+		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	status, err := h.services.Transaction.ChangeStatus(transactionIdInt, body)
 	if err != nil {
-		NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "changed successfully",
+		"new status": status,
 	})
 }
 
@@ -54,7 +60,8 @@ func (h *Handler) getStatusOfTransactionById(c *gin.Context) {
 
 	status, err := h.services.Transaction.GetStatus(transactionIdInt)
 	if err != nil {
-		NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
 	}
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"status": status,
@@ -69,33 +76,31 @@ func (h *Handler) cancelTransactionById(c *gin.Context) {
 	}
 	err = h.services.Transaction.Cancel(transactionIdInt)
 	if err != nil {
-		NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
 	}
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "deleted",
 	})
 }
 
-func (h *Handler) getTransactionsByUserId(c *gin.Context) {
-	userId := c.Param("user_id")
-	userIdInt, err := strconv.Atoi(userId)
-	if err != nil {
-		return
-	}
-	transactions, err := h.services.Transaction.GetByUserId(userIdInt)
-	if err != nil {
-		NewErrorResponse(c, http.StatusBadRequest, err.Error())
-	}
-	c.JSON(http.StatusOK, map[string]interface{}{
-		"transactions": transactions,
-	})
-}
+func (h *Handler) getTransactionsByUser(c *gin.Context) {
+	userAttribute := c.Param("user_attr")
 
-func (h *Handler) getTransactionsByUserEmail(c *gin.Context) {
-	userEmail := c.Param("user_email")
-	transactions, err := h.services.Transaction.GetByUserEmail(userEmail)
+	var userId int
+	var transactions []emulator.TransactionModel
+	var err error
+
+	if !utility.IsEmail(userAttribute) {
+		userId, _ = strconv.Atoi(userAttribute)
+		transactions, err = h.services.Transaction.GetByUserId(userId)
+	} else {
+		transactions, err = h.services.Transaction.GetByUserEmail(userAttribute)
+	}
+
 	if err != nil {
-		NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
 	}
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"transactions": transactions,
