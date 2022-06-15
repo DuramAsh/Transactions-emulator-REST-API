@@ -7,7 +7,7 @@ import (
 
 type Transaction interface {
 	Create(body emulator.TransactionModel) error
-	ChangeStatus(transactionId int, body emulator.TransactionModel) (string, error)
+	ChangeStatus(transactionId int, body emulator.Status) (string, error)
 	GetStatus(transactionId int) (string, error)
 	Cancel(transactionId int) error
 	GetByUserId(userId int) ([]emulator.TransactionModel, error)

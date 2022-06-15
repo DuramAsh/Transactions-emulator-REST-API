@@ -17,7 +17,7 @@ func (s *TransactionService) Create(body emulator.TransactionModel) error {
 	return s.repo.Create(body)
 }
 
-func (s *TransactionService) ChangeStatus(transactionId int, body emulator.TransactionModel) (string, error) {
+func (s *TransactionService) ChangeStatus(transactionId int, body emulator.Status) (string, error) {
 	return s.repo.ChangeStatus(transactionId, body)
 }
 

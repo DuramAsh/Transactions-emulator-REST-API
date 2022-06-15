@@ -11,19 +11,20 @@ import (
 func (h *Handler) createTransaction(c *gin.Context) {
 
 	var input emulator.TransactionModel
-	if err := c.BindJSON(&input); err != nil {
+	err := c.BindJSON(&input)
+	if err != nil {
 		utility.NewErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	err := h.services.Transaction.Create(input)
+	err = h.services.Transaction.Create(input)
 	if err != nil {
 		utility.NewErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success!",
+		"message": "created successfully",
 	})
 }
 
@@ -35,7 +36,7 @@ func (h *Handler) changeStatusOfTransactionById(c *gin.Context) {
 		return
 	}
 
-	var body emulator.TransactionModel
+	var body emulator.Status
 	if err := c.BindJSON(&body); err != nil {
 		utility.NewErrorResponse(c, http.StatusBadRequest, err.Error())
 		return

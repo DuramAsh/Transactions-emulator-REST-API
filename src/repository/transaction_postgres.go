@@ -33,7 +33,7 @@ func (r *TransactionPostgres) Create(body emulator.TransactionModel) error {
 	return nil
 }
 
-func (r *TransactionPostgres) ChangeStatus(transactionId int, body emulator.TransactionModel) (string, error) {
+func (r *TransactionPostgres) ChangeStatus(transactionId int, body emulator.Status) (string, error) {
 
 	currentStatus, err := r.GetStatus(transactionId)
 	if err != nil {
