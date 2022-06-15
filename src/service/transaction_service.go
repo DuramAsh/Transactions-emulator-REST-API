@@ -1,8 +1,8 @@
 package service
 
 import (
-	emulator "github.com/duramash/constanta-emulator-task/pkg/models"
-	"github.com/duramash/constanta-emulator-task/pkg/repository"
+	emulator "github.com/duramash/constanta-emulator-task/src/models"
+	"github.com/duramash/constanta-emulator-task/src/repository"
 )
 
 type TransactionService struct {

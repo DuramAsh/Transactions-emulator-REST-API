@@ -2,15 +2,13 @@ package main
 
 import (
 	emulator "github.com/duramash/constanta-emulator-task"
-	"github.com/duramash/constanta-emulator-task/pkg/handler"
-	"github.com/duramash/constanta-emulator-task/pkg/repository"
-	"github.com/duramash/constanta-emulator-task/pkg/service"
-	"github.com/joho/godotenv"
+	"github.com/duramash/constanta-emulator-task/src/handler"
+	"github.com/duramash/constanta-emulator-task/src/repository"
+	"github.com/duramash/constanta-emulator-task/src/service"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"log"
-	"os"
 )
 
 func main() {
@@ -19,15 +17,11 @@ func main() {
 		logrus.Fatalf("Error with config initialization: %s", err.Error())
 	}
 
-	if err := godotenv.Load(); err != nil {
-		logrus.Fatalf("Error with loading env data: %s", err.Error())
-	}
-
 	db, err := repository.NewPostgresDB(repository.Config{
 		Host:     viper.GetString("db.host"),
 		Port:     viper.GetInt("db.port"),
 		Username: viper.GetString("db.username"),
-		Password: os.Getenv("DB_PASSWORD"),
+		Password: viper.GetString("db.password"),
 		DBName:   viper.GetString("db.dbname"),
 		SSLMode:  viper.GetString("db.sslmode"),
 	})

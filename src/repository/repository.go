@@ -1,8 +1,8 @@
-package service
+package repository
 
 import (
-	emulator "github.com/duramash/constanta-emulator-task/pkg/models"
-	"github.com/duramash/constanta-emulator-task/pkg/repository"
+	emulator "github.com/duramash/constanta-emulator-task/src/models"
+	"github.com/jmoiron/sqlx"
 )
 
 type Transaction interface {
@@ -14,12 +14,12 @@ type Transaction interface {
 	GetByUserEmail(userEmail string) ([]emulator.TransactionModel, error)
 }
 
-type Service struct {
+type Repository struct {
 	Transaction
 }
 
-func NewService(repo *repository.Repository) *Service {
-	return &Service{
-		Transaction: NewTransactionService(repo.Transaction),
+func NewRepository(db *sqlx.DB) *Repository {
+	return &Repository{
+		Transaction: NewTransactionPostgres(db),
 	}
 }

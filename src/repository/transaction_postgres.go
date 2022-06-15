@@ -2,8 +2,8 @@ package repository
 
 import (
 	"fmt"
-	emulator "github.com/duramash/constanta-emulator-task/pkg/models"
-	"github.com/duramash/constanta-emulator-task/pkg/utility"
+	emulator "github.com/duramash/constanta-emulator-task/src/models"
+	"github.com/duramash/constanta-emulator-task/src/utility"
 	"github.com/jmoiron/sqlx"
 	"math/rand"
 	"time"

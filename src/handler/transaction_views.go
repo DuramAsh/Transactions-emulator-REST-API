@@ -1,8 +1,8 @@
 package handler
 
 import (
-	emulator "github.com/duramash/constanta-emulator-task/pkg/models"
-	"github.com/duramash/constanta-emulator-task/pkg/utility"
+	emulator "github.com/duramash/constanta-emulator-task/src/models"
+	"github.com/duramash/constanta-emulator-task/src/utility"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
