@@ -12,7 +12,7 @@ Also JWT authentication has been added.
 * [Gin Web Framework](https://gin-gonic.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 
-## Run project using the following commands
+## Open any CLI and run project using the following commands (make sure you are in the main project directory)
 * `docker-compose up --build constanta-golang-emulator-task`
 * Open any browser and use this URL (or just send requests using Postman):
 `localhost:8888/api/`
