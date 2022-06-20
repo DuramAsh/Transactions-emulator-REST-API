@@ -14,6 +14,7 @@ Also JWT authentication has been added.
 
 ## Open any CLI and run project using the following commands (make sure you are in the main project directory)
 * `docker-compose up --build constanta-golang-emulator-task`
+* `migrate -path ./migrations -database postgres://postgres:qwerty123@localhost:5437/postgres?sslmode=disable up`
 * Open any browser and use this URL (or just send requests using Postman):
 `localhost:8888/api/`
 * Check the `Emulator API.postman_collection.json` file for available enpoints
