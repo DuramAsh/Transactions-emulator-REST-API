@@ -21,11 +21,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/transactions/",
+					"raw": "localhost:8888/api/transactions/",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8888",
 					"path": [
 						"api",
 						"transactions",
@@ -60,11 +60,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/transactions/1",
+					"raw": "localhost:8888/api/transactions/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8888",
 					"path": [
 						"api",
 						"transactions",
@@ -92,11 +92,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/transactions/1",
+					"raw": "localhost:8888/api/transactions/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8888",
 					"path": [
 						"api",
 						"transactions",
@@ -121,11 +121,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/transactions/1",
+					"raw": "localhost:8888/api/transactions/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8888",
 					"path": [
 						"api",
 						"transactions",
@@ -153,11 +153,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/transactions/users/1",
+					"raw": "localhost:8888/api/transactions/users/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8888",
 					"path": [
 						"api",
 						"transactions",
@@ -183,11 +183,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/login",
+					"raw": "localhost:8888/api/login",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8888",
 					"path": [
 						"api",
 						"login"
