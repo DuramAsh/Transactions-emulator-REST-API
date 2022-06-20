@@ -29,6 +29,14 @@ func (h *Handler) createTransaction(c *gin.Context) {
 }
 
 func (h *Handler) changeStatusOfTransactionById(c *gin.Context) {
+
+	err := utility.IdentifyUser(c)
+
+	if err != nil {
+		utility.NewErrorResponse(c, http.StatusUnauthorized, err.Error())
+		return
+	}
+
 	transactionId := c.Param("id")
 	transactionIdInt, err := strconv.Atoi(transactionId)
 	if err != nil {
