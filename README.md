@@ -1,9 +1,21 @@
-# Technical task given to me by Constanta company to be accepted to their internship program
+## About The Project
+Technical task given to me by Constanta company to be accepted to their internship program
+<br>
 (Golang Junior developer)
 
-The project is the simple API written using Golang and Gin web-framework
+### Built With
+* [Golang](https://go.dev/)
+* [Gin Web Framework](https://gin-gonic.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 
-Use this Dockerfile to configire the project on your machine : {{link}}
+## License
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-Short description of project's work:
-{{descr}}
+## Contact
+Zhaksylyk Ashim
+<br>
+Telegram messenger - [@duramash](https://t.me/duramash)
+<br>
+E-mails - duramash.02@gmail.com, z_ashim@kbtu.kz
+<br>
+Project Link: [https://github.com/DuramAsh/constanta-golang-emulator-task](https://github.com/DuramAsh/constanta-golang-emulator-task)
