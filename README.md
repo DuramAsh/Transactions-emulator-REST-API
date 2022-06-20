@@ -15,7 +15,6 @@ Also JWT authentication has been added.
 ## Run project using the following commands
 * `docker-compose up --build constanta-golang-emulator-task`
 * Open any browser and use this URL (or just send requests using Postman):
-<br>
 `localhost:8888/api/`
 
 ## License
