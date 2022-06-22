@@ -1,7 +1,9 @@
 ## About The Project
-Technical task given to me by Constanta company to be accepted to their internship program.
-<br>
-(Golang Junior developer)
+
+
+
+
+
 
 It's the emulator of the banking system built relying on Golang Clear Architecture (DI) with implemented CRUD operations upon Transactions entity with all required constraints and error handling.
 <br>
