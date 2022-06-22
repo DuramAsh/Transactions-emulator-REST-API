@@ -15,7 +15,7 @@ Also JWT authentication has been added.
 * [PostgreSQL](https://www.postgresql.org/)
 
 ## Open any CLI and run project using the following commands (make sure you are in the main project directory)
-* `docker-compose up --build constanta-golang-emulator-task`
+* `docker-compose up --build emulator-app`
 * `migrate -path ./migrations -database postgres://postgres:qwerty123@localhost:5437/postgres?sslmode=disable up`
 * Open any browser and use this URL (or just send requests using Postman):
 `localhost:8888/api/`
